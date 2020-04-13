@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Livecoin page</title>
+    <title>Poloniex</title>
 </head>
 <body>
 <div class="container">
@@ -38,12 +38,14 @@
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link" id="v-pills-exmo-tab" data-toggle="pill" data-th-href="@{/exmo}" role="tab"
                            aria-controls="v-pills-exmo" aria-selected="false">Exmo</a>
-                        <a class="nav-link" id="v-pills-binance-tab" data-toggle="pill" data-th-href="@{/poloniex}"
-                           role="tab" aria-controls="v-pills-poloniex" aria-selected="false">Poloniex</a>
+                        <a class="nav-link active" id="v-pills-poloniex-tab" data-toggle="pill"
+                           data-th-href="@{/poloniex}"
+                           role="tab" aria-controls="v-pills-poloniex" aria-selected="true">Poloniex</a>
                         <a class="nav-link" id="v-pills-bitfinex-tab" data-toggle="pill" data-th-href="@{/bitfinex}"
                            role="tab" aria-controls="v-pills-bitfinex" aria-selected="false">Bitfinex</a>
-                        <a class="nav-link active" id="v-pills-livecoin-tab" data-toggle="pill"
-                           data-th-href="@{/livecoin}" role="tab" aria-controls="v-pills-livecoin" aria-selected="true">LiveCoin</a>
+                        <a class="nav-link" id="v-pills-livecoin-tab" data-toggle="pill"
+                           data-th-href="@{/livecoin}" role="tab" aria-controls="v-pills-livecoin"
+                           aria-selected="false">LiveCoin</a>
                         <a class="nav-link" id="v-pills-yobit-tab" data-toggle="pill" data-th-href="@{/yobit}"
                            role="tab" aria-controls="v-pills-yobit" aria-selected="false">YoBit</a>
                     </div>
@@ -53,42 +55,47 @@
                         <div class="tab-pane fade" id="v-pills-exmo" role="tabpanel"
                              aria-labelledby="v-pills-home-exmo">...
                         </div>
-                        <div class="tab-pane fade" id="v-pills-poloniex" role="tabpanel"
-                             aria-labelledby="v-pills-profile-poloniex">ue
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-bitfinex" role="tabpanel"
-                             aria-labelledby="v-pills-messages-bitfinex">...
-                        </div>
-                        <div class="tab-pane fade show active" id="v-pills-livecoin" role="tabpanel"
-                             aria-labelledby="v-pills-settings-livecoin">
+                        <div class="tab-pane fade show active" id="v-pills-binance" role="tabpanel"
+                             aria-labelledby="v-pills-profile-poloniex">
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
                                     <th scope="row">id</th>
                                     <th scope="row">Пара</th>
+                                    <th scope="row">Последняя сделка</th>
                                     <th scope="row">Покупка</th>
                                     <th scope="row">Продажа</th>
-                                    <th scope="row">Последняя сделка</th>
+                                    <th scope="row">Процент изменения</th>
+                                    <th scope="row">Базовый Объём</th>
+                                    <th scope="row">Квотный Объём</th>
+                                    <th scope="row">Торг(0) или (1)</th>
                                     <th scope="row">Max 24h</th>
                                     <th scope="row">Min 24h</th>
-                                    <th scope="row">Средняя цена 24h</th>
-                                    <th scope="row">Сумма сделок 24h</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr  data-th-each="t:${ticker}">
+                                <tr data-th-each="t:${ticker}">
                                     <td>[[ ${t.getId()} ]]</td>
                                     <td>[[ ${t.getPairName()} ]]</td>
-                                    <td>[[ ${t.getBest_bid()} ]]</td>
-                                    <td>[[ ${t.getBest_ask()} ]]</td>
                                     <td>[[ ${t.getLast()} ]]</td>
+                                    <td>[[ ${t.getLowestAsk()} ]]</td>
+                                    <td>[[ ${t.getHighestBid()} ]]</td>
+                                    <td>[[ ${t.getPercentChange()} ]]</td>
+                                    <td>[[ ${t.getBaseVolume()} ]]</td>
+                                    <td>[[ ${t.getQuoteVolume()} ]]</td>
+                                    <td>[[ ${t.getIsFrozen()} ]]</td>
                                     <td>[[ ${t.getHigh()} ]]</td>
                                     <td>[[ ${t.getLow()} ]]</td>
-                                    <td>[[ ${t.getVwap()} ]]</td>
-                                    <td>[[ ${t.getVolume()} ]]</td>
                                 </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-bitfinex" role="tabpanel"
+                             aria-labelledby="v-pills-messages-bitfinex">...
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-livecoin" role="tabpanel"
+                             aria-labelledby="v-pills-settings-livecoin">
+
                         </div>
                         <div>
                             <form data-th-action="@{/livecoin}" method="post">
@@ -104,5 +111,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

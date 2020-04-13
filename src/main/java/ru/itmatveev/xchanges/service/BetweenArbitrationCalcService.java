@@ -22,13 +22,13 @@ public class BetweenArbitrationCalcService {
         var pairNameExmo = exmoRepo.getExmoTickerListByPairName(pairName);
         var pairNameLiveCoin = liveCoinRepo.getTickerListByPairName(pairName);
 
-        String whereFrom = "";
-        String whereTo = "";
+        String whereFrom;
+        String whereTo;
 
         double liveCoinFee = 0.18;
         double exmoFee = 0.2;
 
-        double profit = 0;
+        double profit;
         double result = 0;
         //sell - ask, цена, за которую покупаем мы
         //buy - bid, цена, за которую продаём мы
@@ -60,12 +60,6 @@ public class BetweenArbitrationCalcService {
             profit = buyPriceExmo - sellPriceLiveCoin;
             whereFrom = "LiveCoin";
             whereTo = "EXMO";
-            service.addData(pairName, whereFrom, whereTo, result, profit);
-        } else if (sellPriceExmo > buyPriceLiveCoin) {
-            result = buyPriceLiveCoin - sellPriceExmo;
-            service.addData(pairName, whereFrom, whereTo, result, profit);
-        } else if (sellPriceLiveCoin > buyPriceExmo) {
-            result = buyPriceExmo - sellPriceLiveCoin;
             service.addData(pairName, whereFrom, whereTo, result, profit);
         }
     }
