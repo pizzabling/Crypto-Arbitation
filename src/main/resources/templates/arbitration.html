@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Поиск арбитража</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-th-href="@{/}">Домой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-th-href="@{/exchanges}">Биржи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-th-href="@{/arbitration}">Арбитраж</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-th-href="@{/samePairs}">Пары на биржах</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Аккаунт</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <div>
+                <form data-th-action="@{/arbitration}" method="post">
+                    <div class="form-group">
+                        <label for="pairName">Введи пару для поиска арбитража</label>
+                        <input type="text" id="pairName" name="pairName" placeholder="PAIR_1/PAIR_2">
+                    </div>
+                    <div class="form-group">
+                        <label for="transferFeeExmo">Введи комиссию за перевод Exmo</label>
+                        <input type="text" id="transferFeeExmo" name="transferFeeExmo" placeholder="fee1">
+                    </div>
+                    <div class="form-group">
+                        <label for="transferFeeLiveCoin">Введи комиссию за перевод LiveCoin</label>
+                        <input type="text" id="transferFeeLiveCoin" name="transferFeeLiveCoin" placeholder="fee2">
+                    </div>
+                    <button>Расчёт</button>
+                </form>
+            </div>
+            <div>
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th scope="row">Пара</th>
+                        <th scope="row">Покупаем на</th>
+                        <th scope="row">Продаём на</th>
+                        <th scope="row">Профит</th>
+                        <th scope="row">Есть ли минус?</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr data-th-each="data:${data}">
+                        <td>[[ ${data.getPairName()} ]]</td>
+                        <td>[[ ${data.getWhereFrom()} ]]</td>
+                        <td>[[ ${data.getWhereTo()} ]]</td>
+                        <td>[[ ${data.getProfit()} ]]</td>
+                        <td>[[ ${data.getResult()} ]]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
